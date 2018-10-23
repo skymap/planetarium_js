@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta http-equiv="content-style-type" content="text/css">
+		<meta http-equiv="content-script-type" content="text/javascript">
+		<meta name="robots" content="INDEX,NOFOLLOW">
+		<title>Planetarium for JavaScript</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="CONTENTS" href="http://lab-stardust.github.io/">
+		<link rev="MADE" href="mailto:lab.stardust@gmail.com">
+		<script type="text/javascript" src="star.js"></script>
+		<script type="text/javascript" src="const.js"></script>
+		<script type="text/javascript" src="main.js"></script>
+	</head>
+	<body>
+		<canvas id="screen">HTML5のCanvas要素に対応しているブラウザで閲覧してください。(IE9以降)</canvas>
+		<div id="menu">
+			<form name="button" action="#">
+				<a href="https://github.com/lab-stardust/planetarium-js">Planetarium for JavaScript</a>
+				<p>
+					<input type="button" name="config_button" value="Config" onclick="showMenu()"><input type="checkbox" name="realtime_checkbox" onclick="changeRealTimeCheckbox()">real-time<br>
+					<input type="button" name="rotation_start_button" value="Rotation" onclick="start()"><input type="button" name="rotation_forward_button" value="+" onclick="forward()"><input type="button" name="rotation_back_button" value="-" onclick="back()"><br>
+					<input type="button" name="rotation_stop_button" value="Stop" onclick="stop()">
+				</p>
+			</form>
+		</div>
+		<div id="input">
+			<form name="form" action="#">
+				<h2>表示</h2>
+				<p>
+					<input type="checkbox" name="horizon_checkbox" onclick="changeCheckbox(1)">地平線&nbsp;
+					<input type="checkbox" name="az_font_checkbox" onclick="changeCheckbox(2)">方位&nbsp;
+					<input type="checkbox" name="drawn_time_checkbox" onclick="changeCheckbox(3)">描画時間
+				</p>
+				<p>
+					<input type="checkbox" name="az_line_checkbox" onclick="changeCheckbox(4)">方位角&nbsp;
+					<input type="checkbox" name="alt_line_checkbox" onclick="changeCheckbox(5)">高度&nbsp;
+					<input type="checkbox" name="constellation_line_checkbox" onclick="changeCheckbox(6)">星座線&nbsp;
+					<input type="checkbox" name="constellation_name_checkbox" onclick="changeCheckbox(7)">星座名&nbsp;
+				</p>
+				<p>
+					表示等級&nbsp;<select name="magnitude_elements" onchange="changeStarMagnitude()"></select>
+				</p>
+				<h2>惑星</h2>
+				<p>
+					<input type="checkbox" name="planet_checkbox" onclick="changePlanetCheckbox(0)">&nbsp;水星
+					<input type="checkbox" name="planet_checkbox" onclick="changePlanetCheckbox(1)">&nbsp;金星
+					<input type="checkbox" name="planet_checkbox" onclick="changePlanetCheckbox(2)">&nbsp;火星
+					<input type="checkbox" name="planet_checkbox" onclick="changePlanetCheckbox(3)">&nbsp;木星
+					<input type="checkbox" name="planet_checkbox" onclick="changePlanetCheckbox(4)">&nbsp;土星
+					<input type="checkbox" name="planet_checkbox" onclick="changePlanetCheckbox(5)">&nbsp;天王星
+					<input type="checkbox" name="planet_checkbox" onclick="changePlanetCheckbox(6)">&nbsp;海王星<br>
+					<input type="checkbox" name="planet_name_checkbox" onclick="changeCheckbox(8)">&nbsp;惑星名
+				</p>
+				<h2>観測時刻</h2>
+				<p>
+					<input type="text" name="year" size="4" maxlength="4">&nbsp;年&nbsp;
+					<input type="text" name="month" size="2" maxlength="2">&nbsp;月&nbsp;
+					<input type="text" name="date" size="2" maxlength="2">&nbsp;日&nbsp;
+					<input type="text" name="hour" size="2" maxlength="2">&nbsp;時&nbsp;
+					<input type="text" name="minute" size="2" maxlength="2">&nbsp;分&nbsp;
+					<input type="text" name="second" size="2" maxlength="2">&nbsp;秒
+				</p>
+				<p>
+					<input type="button" value="現在時刻 取得" onclick="pressedTimeNowButton()">&nbsp;
+					時差&nbsp;<select name="timezone_elements" onchange="changeTimeZone()"></select>
+				</p>
+				<p>
+					<input type="button" value="観測時刻 反映" onclick="pressedTimeUpdateButton()">
+				</p>
+				<h2>観測地</h2>
+				<p>
+					緯度
+					<input type="radio" name="phi_sign">北緯
+					<input type="radio" name="phi_sign">南緯
+					<input type="text" name="phi_d" size="3">&nbsp;&deg;&nbsp;
+					<input type="text" name="phi_m" size="3">&nbsp;&prime;&nbsp;
+					<input type="text" name="phi_s" size="3">&nbsp;&Prime;
+				</p>
+				<p>
+					経度
+					<input type="radio" name="lam_sign">東経
+					<input type="radio" name="lam_sign">西経
+					<input type="text" name="lam_d" size="3" maxlength="3">&nbsp;&deg;&nbsp;
+					<input type="text" name="lam_m" size="2" maxlength="2">&nbsp;&prime;&nbsp;
+					<input type="text" name="lam_s" size="2" maxlength="2">&nbsp;&Prime;
+				</p>
+				<p>
+					<input type="button" value="観測地 反映" onclick="pressedLocationUpdateButton()">
+				</p>
+			</form>
+		</div>
+	</body>
+</html>
